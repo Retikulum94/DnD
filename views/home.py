@@ -6,7 +6,7 @@ st.title("Meine erste Streamlit App")
 
 """
 Diese App wurde von folgenden Personen entwickelt:
-- Dave Brunner (david.brunner94@gmail.com)
+- David Brunner (brunndav@students.zhaw.ch)
 - Dennis Bailer (baileden@students.zhaw.ch)
 
 Diese App ist das leere Gerüst für die App-Entwicklung im Modul Informatik 2 (BMLD/ZHAW)
