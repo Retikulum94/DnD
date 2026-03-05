@@ -1,5 +1,6 @@
 import streamlit as st
 
-st.title("Unterseite A")
+st.title("Zufallszahlgenerator")
 
-st.write("Diese Seite ist eine Unterseite der Startseite.")
+st.write("Diese Seite generiert Zufallszahlen.")
+
