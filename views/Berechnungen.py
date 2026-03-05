@@ -3,7 +3,7 @@ import streamlit as st
 from functions.rechnungen import add, subtract, square, root
 
 st.title("Hier könnt ihr diverse Berechnungen durchführen")
-st.write(" Keine scheu, probiert es aus. ;) ")023
+st.write(" Keine scheu, probiert es aus. ;) ")
 
 with st.form("Addieren"):
     st.write("Gib hier deine Zahlen die du addieren willst ein:")
