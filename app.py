@@ -1,11 +1,9 @@
-import sys, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__),'..')))
 import streamlit as st
 
 st.set_page_config(page_title="Meine App", page_icon=":material/home:")
 
 pg_home = st.Page("views/home.py", title="Home", icon=":material/home:", default=True)
-pg_second = st.Page("views/Zufallszahlengenerator.py", title="Zufallszahlengenerator", icon=":material/info:")
+pg_second = st.Page("views/ph2.py", title="pH Rechner", icon=":material/info:")
 pg_third = st.Page("views/Berechnungen.py", title="Berechnungen", icon=":material/info:")
 
 pg = st.navigation([pg_home, pg_second, pg_third])
