@@ -1,14 +1,19 @@
 import random
+from fractions import Fraction
 
-def zufallszahl(min_zahl, max_zahl):
-    """
-    Generiert eine zufällige Ganzzahl zwischen min_zahl und max_zahl (inklusive).
+class ZufallszahlenGenerator:
     
-    Args:
-        min_zahl: Minimale Zahl (inklusive)
-        max_zahl: Maximale Zahl (inklusive)
+    @staticmethod
+    def ganze_zahl(von: int, bis: int) -> int:
+        return random.randint(von, bis)
     
-    Returns:
-        Eine zufällige Ganzzahl im angegebenen Bereich
-    """
-    return random.randint(min_zahl, max_zahl)
+    @staticmethod
+    def rationale_zahl(von: float = 0.0, bis: float = 1.0) -> float:
+        return random.uniform(von, bis)
+    
+    @staticmethod
+    def bruch(von_zaehler: int = 0, bis_zaehler: int = 10, 
+          von_nenner: int = 1, bis_nenner: int = 10) -> Fraction:
+        zaehler = random.randint(von_zaehler, bis_zaehler)
+        nenner = random.randint(von_nenner, bis_nenner)
+        return Fraction(zaehler, nenner)
