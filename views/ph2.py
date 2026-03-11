@@ -21,7 +21,7 @@ with st.form("pH‑Formular"):
             st.error(e)
     
             # --- NEW CODE to update history in session state and display it ---
-    st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([ph])])
+        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([ph])])
         
 # --- NEW CODE to display the history table ---
 st.dataframe(st.session_state['data_df'])
