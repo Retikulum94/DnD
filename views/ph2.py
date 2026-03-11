@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from functions.ph1 import ph_from_hydrogen
 
 st.title("pH‑Wert berechnen")
@@ -18,3 +19,9 @@ with st.form("pH‑Formular"):
             st.write("pH:", ph)
         except ValueError as e:
             st.error(e)
+    
+            # --- NEW CODE to update history in session state and display it ---
+    st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([ph])])
+        
+# --- NEW CODE to display the history table ---
+st.dataframe(st.session_state['data_df'])
