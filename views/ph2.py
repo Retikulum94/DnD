@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from utils.data_manager import DataManager  # --- NEW CODE: import data manager ---
 from functions.ph1 import ph_from_hydrogen
 
 st.title("pH‑Wert berechnen")
@@ -23,5 +24,10 @@ with st.form("pH‑Formular"):
             # --- NEW CODE to update history in session state and display it ---
         st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([ph])])
         
-# --- NEW CODE to display the history table ---
+ # --- CODE UPDATE: save data to data manager ---
+    data_manager = DataManager()
+    data_manager.save_user_data(st.session_state['data_df'], 'data.csv')
+    # --- END OF CODE UPDATE ---
+        
+# display the data frame in a table
 st.dataframe(st.session_state['data_df'])
