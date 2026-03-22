@@ -1,5 +1,12 @@
+from datetime import datetime
+import pytz
+
+
 def add(a, b):
-    return a + b
+     return {
+        "timestamp": datetime.now(pytz.timezone('Europe/Zurich')),
+        "Ergebnis": a+b
+    }
 
 def subtract(a, b):
     return a - b
