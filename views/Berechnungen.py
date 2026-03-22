@@ -13,7 +13,7 @@ with st.form("Addieren"):
     submitted = st.form_submit_button("Berechnen")  
     if submitted:
         st.write("Ergebnis:", add(a, b))
-        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([add])])
+        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([add(a, b)])])
 
 with st.form("Subtrahieren"):
     st.write("Gib hier deine Zahlen die du subtrahieren willst ein:")
@@ -22,7 +22,7 @@ with st.form("Subtrahieren"):
     submitted = st.form_submit_button("Berechnen", key="sub_submit")  
     if submitted:
         st.write("Ergebnis:", subtract(a, b))
-        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([subtract])])
+        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([subtract(a, b)])])
 
 with st.form("Quadrieren"):
     st.write("Gib hier deine Zahl die du quadrieren willst ein:")
@@ -30,7 +30,7 @@ with st.form("Quadrieren"):
     submitted = st.form_submit_button("Berechnen", key="square_submit")  
     if submitted:
         st.write("Ergebnis:", square(a))
-        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([square])])
+        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([square(a)])])
 
 with st.form("Wurzel"):
     st.write("Gib hier deine Zahl und die Wurzel welche daraus gezogen werden soll, ein:")
@@ -39,7 +39,7 @@ with st.form("Wurzel"):
     submitted = st.form_submit_button("Berechnen", key="root_submit")  
     if submitted:
         st.write("Ergebnis:", root(a, b))
-        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([root])])
+        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([root(a, b)])])
 
 data_manager = DataManager()
 data_manager.save_user_data(st.session_state['data_df'], 'data.csv')
