@@ -1,6 +1,5 @@
 import streamlit as st
-import pandas as pd
-from utils.data_manager import DataManager  # --- NEW CODE: import data manager ---
+
 from functions.rechnungen import add, subtract, square, root
 
 st.title("Hier könnt ihr diverse Berechnungen durchführen")
@@ -13,7 +12,6 @@ with st.form("Addieren"):
     submitted = st.form_submit_button("Berechnen")  
     if submitted:
         st.write("Ergebnis:", add(a, b))
-        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([add])])
 
 with st.form("Subtrahieren"):
     st.write("Gib hier deine Zahlen die du subtrahieren willst ein:")
@@ -22,7 +20,6 @@ with st.form("Subtrahieren"):
     submitted = st.form_submit_button("Berechnen", key="sub_submit")  
     if submitted:
         st.write("Ergebnis:", subtract(a, b))
-        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([subtract])])
 
 with st.form("Quadrieren"):
     st.write("Gib hier deine Zahl die du quadrieren willst ein:")
@@ -30,7 +27,6 @@ with st.form("Quadrieren"):
     submitted = st.form_submit_button("Berechnen", key="square_submit")  
     if submitted:
         st.write("Ergebnis:", square(a))
-        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([square])])
 
 with st.form("Wurzel"):
     st.write("Gib hier deine Zahl und die Wurzel welche daraus gezogen werden soll, ein:")
@@ -39,8 +35,3 @@ with st.form("Wurzel"):
     submitted = st.form_submit_button("Berechnen", key="root_submit")  
     if submitted:
         st.write("Ergebnis:", root(a, b))
-        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([root])])
-
-data_manager = DataManager()
-data_manager.save_user_data(st.session_state['data_df'], 'data.csv')
-st.dataframe(st.session_state['data_df'])
