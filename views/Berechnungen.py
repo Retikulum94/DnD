@@ -76,7 +76,7 @@ st.dataframe(st.session_state['data_df'])
 if len(st.session_state['data_df']) > 0:
     st.subheader("📊 Visualisierung der Resultate")
     
-    col1 = st.columns(2)
+    col1, col2 = st.columns(2)
     
     with col1:
         # Balkendiagramm: Resultate pro Rechnung
@@ -91,3 +91,26 @@ if len(st.session_state['data_df']) > 0:
         fig1.update_layout(height=400)
         st.plotly_chart(fig1, use_container_width=True)
     
+    with col2:
+        # Pie-Diagramm: Anzahl Berechnungen pro Typ
+        rechnung_counts = st.session_state['data_df']['Rechnung'].apply(lambda x: x.split()[1] if len(x.split()) > 1 else x[0]).value_counts()
+        fig2 = go.Figure(data=[go.Pie(
+            labels=rechnung_counts.index,
+            values=rechnung_counts.values,
+            title='Verteilung der Rechenoperationen'
+        )])
+        fig2.update_layout(height=400)
+        st.plotly_chart(fig2, use_container_width=True)
+    
+    # Liniendiagramm: Resultate über Zeit
+    df_sorted = st.session_state['data_df'].sort_values('timestamp')
+    fig3 = px.line(
+        df_sorted,
+        x='timestamp',
+        y='Resultat',
+        color='Rechnung',
+        title='Resultate über die Zeit',
+        markers=True
+    )
+    fig3.update_layout(height=400, xaxis_title='Zeit', yaxis_title='Resultat')
+    st.plotly_chart(fig3, use_container_width=True)
