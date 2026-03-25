@@ -93,7 +93,19 @@ if len(st.session_state['data_df']) > 0:
     
     with col2:
         # Pie-Diagramm: Anzahl Berechnungen pro Typ
-        rechnung_counts = st.session_state['data_df']['Rechnung'].apply(lambda x: x.split()[1] if len(x.split()) > 1 else x[0]).value_counts()
+        def extract_operation(rechnung_str):
+            if ' + ' in rechnung_str:
+                return '+'
+            elif ' - ' in rechnung_str:
+                return '-'
+            elif '^' in rechnung_str:
+                return '^'
+            elif '√' in rechnung_str:
+                return '√'
+            else:
+                return 'Andere'
+        
+        rechnung_counts = st.session_state['data_df']['Rechnung'].fillna('').apply(extract_operation).value_counts()
         fig2 = go.Figure(data=[go.Pie(
             labels=rechnung_counts.index,
             values=rechnung_counts.values,
