@@ -25,6 +25,46 @@ with st.form("Addieren"):
         }
         st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([new_entry])], ignore_index=True)
 
+with st.form("Subtrahieren"):
+    st.write("Gib hier deine Zahlen die du subtrahieren willst ein:")
+    a = st.number_input("Nummer 1")
+    b = st.number_input("Nummer 2")
+    submitted = st.form_submit_button("Berechnen")  
+    if submitted:
+        st.write("Ergebnis:", subtract(a, b))
+        new_entry = {
+            "timestamp": datetime.now(pytz.timezone('Europe/Zurich')),
+            "Rechnung": f"{a} - {b}",
+            "Resultat": subtract(a, b)
+        }
+        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([new_entry])], ignore_index=True)
+
+with st.form("Quadrieren"):
+    st.write("Gib hier deine Zahl die du quadrieren willst ein:")
+    a = st.number_input("Nummer")
+    submitted = st.form_submit_button("Berechnen")  
+    if submitted:
+        st.write("Ergebnis:", square(a))
+        new_entry = {
+            "timestamp": datetime.now(pytz.timezone('Europe/Zurich')),
+            "Rechnung": f"{a}^2",
+            "Resultat": square(a)
+        }
+        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([new_entry])], ignore_index=True)
+
+with st.form("Wurzelziehen"):
+    st.write("Gib hier deine Zahl und den Wurzelexponenten ein:")
+    a = st.number_input("Zahl")
+    b = st.number_input("Wurzelexponent")
+    submitted = st.form_submit_button("Berechnen")  
+    if submitted:
+        st.write("Ergebnis:", root(a, b))
+        new_entry = {
+            "timestamp": datetime.now(pytz.timezone('Europe/Zurich')),
+            "Rechnung": f"√{b}({a})",
+            "Resultat": root(a, b)
+        }
+        st.session_state['data_df'] = pd.concat([st.session_state['data_df'], pd.DataFrame([new_entry])], ignore_index=True)
 
 data_manager = DataManager()
 data_manager.save_user_data(st.session_state['data_df'], 'data.csv')
